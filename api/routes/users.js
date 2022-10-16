@@ -1,10 +1,10 @@
 const express=require('express');
+const { getUsers, updateUser, deleteUser, getSpecificUser } = require('../controllers/userController');
+const { verifyUser, verifyAdmin } = require('../utils/verifyToken');
 
 const router=express.Router();
 
-router.get('/',(req,res)=>{
-    res.send('Auth route');
-});
+router.get('/',verifyAdmin, getUsers).put('/:id',verifyUser,updateUser).delete('/:id',verifyUser,deleteUser).get('/:id',verifyUser,getSpecificUser);
 
 
 

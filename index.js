@@ -5,6 +5,8 @@ const authRoute=require('./api/routes/auth');
 const usersRoute=require('./api/routes/users');
 const hotelsRoute=require('./api/routes/hotels');
 const roomsRoute=require('./api/routes/rooms');
+const cookieParser = require('cookie-parser');
+const { verifyToken } = require('./api/utils/verifyToken');
 const app = express();
 dotenv.config();
 
@@ -33,7 +35,9 @@ mongoose.connection.on('connected', ()=>{
     console.log('MongoDB connected');
 });
 
+app.use(cookieParser())
 app.use(express.json());
+app.use(verifyToken)
 
 app.use('/api/auth',authRoute);
 app.use('/api/users',usersRoute);

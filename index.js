@@ -12,13 +12,13 @@ const app = express();
 dotenv.config();
 
 var corsOptions = {
-    origin: 'https://hotel-booking-frontend-react.herokuapp.com/',
+    origin: 'https://hotel-booking-app-frontend.herokuapp.com',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
   app.use(cors(corsOptions))
 
-  
+
 const connect = async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URI, {

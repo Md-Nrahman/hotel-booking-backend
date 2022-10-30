@@ -7,6 +7,7 @@ const hotelsRoute=require('./api/routes/hotels');
 const roomsRoute=require('./api/routes/rooms');
 const cookieParser = require('cookie-parser');
 const { verifyToken } = require('./api/utils/verifyToken');
+var cors = require('cors')
 const app = express();
 dotenv.config();
 
@@ -37,9 +38,10 @@ mongoose.connection.on('connected', ()=>{
 
 app.use(cookieParser())
 app.use(express.json());
-app.use(verifyToken)
+app.use(cors())
 
 app.use('/api/auth',authRoute);
+// app.use(verifyToken)
 app.use('/api/users',usersRoute);
 app.use('/api/hotels',hotelsRoute);
 app.use('/api/rooms',roomsRoute);

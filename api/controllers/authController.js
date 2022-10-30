@@ -23,9 +23,9 @@ const register = async (req, res,next) => {
     };
 
 const login = async (req, res, next) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
         if (!user) {
         return res.status(400).json({ error: "User does not exist" });
         }
@@ -34,10 +34,12 @@ const login = async (req, res, next) => {
         return res.status(400).json({ error: "Invalid credentials" });
         }
         const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'1d'});
-        const {password, isAdmin,...otherDetails}=user._doc;
+        if(token){
+            const {password, isAdmin,...otherDetails}=user._doc;
         res.cookie("access_token", token,{
             httpOnly:true,
         }).status(200).json({...otherDetails});
+        }
     } catch (error) {
         next(error);
     }

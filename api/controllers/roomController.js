@@ -3,6 +3,7 @@ const Room = require("../models/Room");
 
 const createRoom = async (req, res) => {
     const hotelId= req.params.hotelId;
+    console.log(hotelId);
     const newRoom = new Room(req.body);
     try {
         const savedRoom = await newRoom.save();

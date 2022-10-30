@@ -48,7 +48,7 @@ app.use(express.json());
 
 
 app.use('/api/auth',authRoute);
-app.use(verifyToken)
+// app.use(verifyToken)
 app.use('/api/users',usersRoute);
 app.use('/api/hotels',hotelsRoute);
 app.use('/api/rooms',roomsRoute);

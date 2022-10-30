@@ -59,7 +59,7 @@ app.use((err,req,res,next)=>{
     res.status(errorStatus).json({error:errorMessage});
 })
 
-var port_number = server.listen(process.env.PORT || 3000);
+var port_number = process.env.PORT || 3000;
 app.listen(port_number,()=>{
     connect()
     console.log('Server is running on port 5000');

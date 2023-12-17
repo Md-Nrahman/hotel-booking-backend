@@ -7,6 +7,7 @@ const hotelsRoute = require("./api/routes/hotels");
 const roomsRoute = require("./api/routes/rooms");
 const cookieParser = require("cookie-parser");
 const { verifyToken } = require("./api/utils/verifyToken");
+const cron = require("node-cron");
 var cors = require("cors");
 const app = express();
 dotenv.config();
